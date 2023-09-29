@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-title>
+    <p>welcome to my page</p>
+  </ion-title>
+  <ion-card-subtitle align="center">
+    please fill the given form
+  </ion-card-subtitle>
+</ion-header>
+
+<form [formGroup]="details">
+  <ion-item >
+       <ion-input
+      type="text"
+      label="Full name"
+      labelPlacement="floating"
+      formControlName="name" required
+    ></ion-input>
+  </ion-item>
+  <ng-container *ngFor="let error of errors.name">
+    <ion-text
+      *ngIf="details.get('name')?.hasError(error.type) && (details.get('name')?.dirty || details.get('name')?.touched)"
+      color="danger"
+      style="font-size: 12px"
+    >
+      {{ error.message }}
+    </ion-text>
+  </ng-container>
+  <ion-item  >
+    <ion-input
+      type="email"
+      label="email"
+      labelPlacement="floating"
+      formControlName="email" required
+    ></ion-input>
+  </ion-item>
+  <ng-container *ngFor="let error of errors.email">
+    <ion-text
+      *ngIf="details.get('email')?.hasError(error.type) && (details.get('email')?.dirty || details.get('email')?.touched)"
+      color="danger"
+      style="font-size: 12px"
+    >
+      {{ error.message }}
+    </ion-text>
+  </ng-container>
+  <ion-item  >
+    <ion-input
+      label="password"
+      labelPlacement="floating"
+      formControlName="password"
+      type="password" required
+    >
+    </ion-input>
+  </ion-item>
+  <ng-container *ngFor="let error of errors.password">
+    <ion-text
+      *ngIf="details.get('password')?.hasError(error.type) && (details.get('password')?.dirty || details.get('password')?.touched)"
+      color="danger"
+      style="font-size: 12px"
+    >
+      {{ error.message }}
+    </ion-text>
+  </ng-container>
+  
+  <ion-item >
+         <ion-input label="number" required type="text" formControlName="number" labelPlacement="floating"></ion-input>
+  </ion-item>
+  <ng-container *ngFor="let error of errors.number">
+    <ion-text
+      *ngIf="details.get('number')?.hasError(error.type) && (details.get('number')?.dirty || details.get('number')?.touched)"
+      color="danger"
+      style="font-size: 12px"
+    >
+      {{ error.message }}
+    </ion-text>
+  </ng-container>
+  <ion-item>
+<ion-input type="date" label="date of birth" required formControlName="selectedDate"[min]="mindate" [max]="date" required></ion-input>
+  </ion-item> 
+
+  <ion-item>
+    <ion-label>Gender</ion-label>
+
+  </ion-item>
+  <ion-radio-group required formControlName="gender" required>
+    <ion-radio slot="start" value="male" style="margin-left: 20px;">Male</ion-radio>
+    <ion-radio slot="start" value="female" style="margin-left: 40px;">Female</ion-radio>
+
+  </ion-radio-group><br />
+  <ion-item>
+         
+    <ion-select [(ngModel)]="selectedValue" #selectedValues required formControlName="skills" placeholder="Select your technical skills" [multiple]="true">
+
+    <ion-select-option   value="react">React</ion-select-option>
+    <ion-select-option   value="angular">Angular</ion-select-option>
+    <ion-select-option   value="nodejs">Nodejs</ion-select-option>
+    <ion-select-option   value="mongodb">mongodb</ion-select-option>
+    <ion-select-option   value="firebase">firebase</ion-select-option>
+  </ion-select>
+</ion-item>
+
+    <ion-button expand="full" (click)="onSubmit()" type="submit">Submit</ion-button>
+    
+
+</form>

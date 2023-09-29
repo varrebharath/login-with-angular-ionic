@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form  [formGroup]="login">
+    <ion-item [ngClass]="{'missing-field' : submitted && login.get('username')?.invalid}">
+      <ion-input #id label="UserName" formControlName="username" required labelPlacement="floating"></ion-input>
+      <ion-icon  name="person-outline"></ion-icon>
+    </ion-item>
+
+    <!-- <ng-container >
+      <ion-text  *ngIf="login.get('username')?.hasError('error') && (login.get('username')?.touched || login.get('username')?.dirty)" color="danger" style="font-size: 12px;">fill the user name</ion-text>
+    </ng-container> -->
+    <ng-container *ngFor="let error of errors.username">
+      <ion-text  *ngIf="login.get('username')?.hasError(error.type) && (login.get('username')?.dirty || login.get('username')?.touched)" color="danger" style="font-size: 12px;">
+        {{ error.message }}
+      </ion-text>
+    </ng-container>
+ 
+ 
+ 
+ <ion-item [ngClass]="{'missing-field' : submitted && login.get('pasword')?.invalid}">
+   <ion-input #word placeholder="pasword" type="password" label="Pasword" formControlName="pasword" labelPlacement="floating"></ion-input>
+   <ion-icon  name="lock-closed-outline"></ion-icon>
+  </ion-item>
+  <!-- <ion-item  >
+   <ion-text  *ngIf="login.get('pasword')?.invalid && login.get('pasword')?.touched" color="danger" style="font-size: 12px;">pasword does't match</ion-text>
+  </ion-item> -->
+  <ng-container *ngFor="let error of errors.pasword">
+    <ion-text  *ngIf="login.get('pasword')?.hasError(error.type) && (login.get('pasword')?.dirty || login.get('pasword')?.touched)" color="danger" style="font-size: 12px;">
+      {{ error.message }}
+    </ion-text>
+  </ng-container>
+    <ion-button type="submit" (click)="submit()" color="danger" expand="block">Login</ion-button>  </form>
+<ion-grid>
+  <ion-row class="ion-justify-content-between">
+    <ion-col >
+      <a [routerLink]="['/passwordreset']" class="small-text" >Forgot Password?</a>
+      
+    </ion-col>
+    <ion-col>
+      <a [routerLink]="['/signup']" > Create Acount!</a>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-content>

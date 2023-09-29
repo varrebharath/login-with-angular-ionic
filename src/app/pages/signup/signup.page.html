@@ -1,0 +1,139 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="signup">
+    <ion-item
+      [ngClass]="{'missing-field' : submitted && signup.get('firstname')?.invalid}"
+    >
+      <ion-input
+        label="First Name"
+        formControlName="firstname"
+        required
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+
+    <!-- <ng-container >
+      <ion-text  *ngIf="signup.get('firstname')?.hasError('error') && (signup.get('firstname')?.touched || signup.get('firstname')?.dirty)" color="danger" style="font-size: 12px;">fill the first name</ion-text>
+    </ng-container> -->
+    <ng-container *ngFor="let error of errors.firstname">
+      <ion-text
+        *ngIf="signup.get('firstname')?.hasError(error.type) && (signup.get('firstname')?.dirty || signup.get('firstname')?.touched)"
+        color="danger"
+        style="font-size: 12px"
+      >
+        {{ error.message }}
+      </ion-text>
+    </ng-container>
+    <ion-item>
+      <ion-input
+        label="Midle Name"
+        formControlName="midlename"
+        required
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item
+      [ngClass]="{'missing-field' : submitted && signup.get('lastname')?.invalid}"
+    >
+      <ion-input
+        label="Last Name"
+        formControlName="lastname"
+        required
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <!-- <ng-container >
+  <ion-text  *ngIf="signup.get('lastname')?.hasError('error') && (signup.get('lastname')?.touched || signup.get('lastname')?.dirty)" color="danger" style="font-size: 12px;">fill the last name</ion-text>
+</ng-container> -->
+    <ng-container *ngFor="let error of errors.lastname">
+      <ion-text
+        *ngIf="signup.get('lastname')?.hasError(error.type) && (signup.get('lastname')?.dirty || signup.get('lastname')?.touched)"
+        color="danger"
+        style="font-size: 12px"
+      >
+        {{ error.message }}
+      </ion-text>
+    </ng-container>
+    <ion-item
+      [ngClass]="{'missing-field' : submitted && signup.get('mobilenumber')?.invalid}"
+    >
+      <ion-input
+        type="text"
+        formControlName="mobilenumber"
+        label="Mobile Number"
+        required
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <!-- <ng-container >
+  <ion-text  *ngIf="signup.get('mobilenumber')?.hasError('error') && (signup.get('mobilenumber')?.touched || signup.get('username')?.dirty)" color="danger" style="font-size: 12px;">enter the mobile number</ion-text>
+</ng-container> -->
+    <ng-container *ngFor="let error of errors.mobilenumber">
+      <ion-text
+        *ngIf="signup.get('mobilenumber')?.hasError(error.type) && (signup.get('mobilenumber')?.dirty || signup.get('mobilenumber')?.touched)"
+        color="danger"
+        style="font-size: 12px"
+      >
+        {{ error.message }}
+      </ion-text>
+    </ng-container>
+
+    <ion-item
+      [ngClass]="{'missing-field' : submitted && signup.get('email')?.invalid}"
+    >
+      <ion-input
+        type="email"
+        label="email"
+        formControlName="email"
+        required
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <!-- <ng-container>
+  <ion-text *ngIf="signup.get('reset')?.invalid && (signup.get('reset')?.touched || signup.get('reset')?.dirty )" color="danger" style="font-size: 12px;">  provide valid email
+  </ion-text>
+      </ng-container> -->
+    <ng-container *ngFor="let error of errors.email">
+      <ion-text
+        *ngIf="signup.get('email')?.hasError(error.type) && (signup.get('email')?.dirty || signup.get('email')?.touched)"
+        color="danger"
+        style="font-size: 12px"
+      >
+        {{ error.message }}
+      </ion-text>
+    </ng-container>
+
+    <ion-item
+      [ngClass]="{'missing-field' : submitted && signup.get('pasword')?.invalid}"
+    >
+      <ion-input
+        placeholder="pasword"
+        type="password"
+        label="Pasword"
+        formControlName="pasword"
+        labelPlacement="floating"
+      ></ion-input>
+    </ion-item>
+    <!-- <ion-item  >
+   <ion-text  *ngIf="signup.get('pasword')?.invalid && signup.get('pasword')?.touched" color="danger" style="font-size: 12px;">pasword must be strong</ion-text>
+  </ion-item> -->
+    <ng-container *ngFor="let error of errors.pasword">
+      <ion-text
+        *ngIf="signup.get('pasword')?.hasError(error.type) && (signup.get('pasword')?.dirty || signup.get('pasword')?.touched)"
+        color="danger"
+        style="font-size: 12px"
+      >
+        {{ error.message }}
+      </ion-text>
+    </ng-container>
+    <ion-button type="submit" (click)="submit()" color="danger" expand="block"
+      >signup</ion-button
+    >
+  </form>
+</ion-content>
